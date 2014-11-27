@@ -50,8 +50,6 @@ namespace SRPP
         {
             int numberOfCity = File.ReadAllLines(nameFiles).Length - 1;
             streamRead.ReadLine();
-          
-
             int[][] placeCities = new int[numberOfCity][];
 
             for (int i = 0; i < numberOfCity; i++)
@@ -60,10 +58,7 @@ namespace SRPP
               
                 string[] line = streamRead.ReadLine().Split(new string [] {" "},StringSplitOptions.RemoveEmptyEntries);
                 string[] data = new string[2];
-        
-               
 
-                
                 for (int j = 0; j < 2; j++)
                 {
                     placeCities[i][j] = Convert.ToInt32(line[j]);
@@ -73,7 +68,20 @@ namespace SRPP
             return placeCities;
         }
 
-        
-
+        public void saveResults (int [][] matrixTrace, double traceLength)
+        {
+            streamWrite.WriteLine(traceLength.ToString());
+            streamWrite.WriteLine(matrixTrace.Length.ToString());
+            String line = "";
+            for(int i = 0; i < matrixTrace.Length; i++)
+            {
+                for (int j = 0; j < matrixTrace[i].Length; j++)
+                {
+                    line += matrixTrace[i][j] + " ";
+                }
+                streamWrite.WriteLine(line);
+                line = "";
+            }
+        }
     }
 }
