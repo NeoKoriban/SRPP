@@ -86,6 +86,7 @@ namespace SRPP
         private void startProcedureButton_Click(object sender, EventArgs e)
         {
             SimulatedAnnealing sA = new SimulatedAnnealing(citiesMatrix, 2.0, Convert.ToInt32(lengthCourseLabel.Text), citiesMatrix.Length);
+            return;
         }
     }
 }

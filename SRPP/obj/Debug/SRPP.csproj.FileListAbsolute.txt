@@ -7,3 +7,12 @@ c:\users\samsung\documents\visual studio 2013\Projects\SRPP\SRPP\obj\Debug\SRPP.
 c:\users\samsung\documents\visual studio 2013\Projects\SRPP\SRPP\obj\Debug\SRPP.exe
 c:\users\samsung\documents\visual studio 2013\Projects\SRPP\SRPP\obj\Debug\SRPP.pdb
 c:\users\samsung\documents\visual studio 2013\Projects\SRPP\SRPP\obj\Debug\SRPP.FormSRPP.resources
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\bin\Debug\SRPP.exe.config
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.exe
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.pdb
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\bin\Debug\SRPP.exe
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\bin\Debug\SRPP.pdb
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.csprojResolveAssemblyReference.cache
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.FormSRPP.resources
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.Properties.Resources.resources
+C:\Users\Michał\Source\Repos\SRPP2\SRPP\obj\Debug\SRPP.csproj.GenerateResource.Cache
