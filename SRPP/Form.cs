@@ -48,7 +48,7 @@ namespace SRPP
         {
 
             fileOperations = new FileOperations(fileLocation, true);
-          
+            lineChartCityMap.Series["Miasta"].Points.Clear();
          
             
             string[] dane = fileOperations.titleCutData();
@@ -72,10 +72,12 @@ namespace SRPP
                     dataGridViewOfPlaceCity.Rows[i].Cells[j+1].Value = citiesMatrix[i][j];
                      
                 }
-               
+
+                
                 lineChartCityMap.Series["Miasta"].Points.AddXY(citiesMatrix[i][0], citiesMatrix[i][1]);
                 lineChartCityMap.Series["Miasta"].Color = Color.Blue;
             }
+            lineChartCityMap.Series["Miasta"].Points.ElementAt(0).Color = Color.Red;
             lineChartCityMap.ChartAreas[0].AxisX.Minimum = 0;
             lineChartCityMap.ChartAreas[0].AxisX.Maximum = 500;
             lineChartCityMap.ChartAreas[0].AxisY.Minimum = 0;
