@@ -15,6 +15,7 @@ namespace SRPP
             temperature = userTemperature;
             k = kFromFile;
             numberOfCities = numberOfCity;
+            var result = SimulatedAnnealingProvider.GenerateSolution(k, citiesList, userTemperature);
         }
 
         private int[] citiesTrack(int city, int index, int [] trackList)
