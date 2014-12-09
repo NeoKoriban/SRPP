@@ -34,12 +34,13 @@ namespace SRPP
                 start[i, k + 1] = cities[0];
             }
 
-            double alpha = 0.97, t=T0;
+            double alpha = 0.98, t=T0;
             int[,] X = start, Xbest;
-            X = LocalSearch(X);
+            //X = LocalSearch(X);
+            X = PreInit(k);
             Xbest = X;
 
-            int maxIteration = 100, L = 200;
+            int maxIteration = 1000, L = 200;
 
             for (int iteration = 0; iteration < maxIteration; ++iteration)
             {
@@ -72,17 +73,67 @@ namespace SRPP
 
                 if (length < 4)
                     return X;
-           /* if(generator.Next() %2 == 0)
-                X = OperatorInter(X);
+          /*  if(generator.Next() %2 == 0)
+               return OperatorInter(X);
             else
-                X = OperatorIntra(X);*/
-               // X = OperatorIntra(X);
+               return OperatorIntra(X);
+   */
                 return Operator(X);
 
          //   return X;
         }
 
-      /*  private static int[,] OperatorInter(int[,] X)
+        private static int[,] PreInit(int k)
+        {
+            int[] cities = new int[citiesPositions.GetLength(0)];
+            for (int i = 0; i < citiesPositions.GetLength(0); ++i)
+                cities[i] = i;
+
+            int[] route = new int[cities.Length];
+             for (int i = 0; i < citiesPositions.GetLength(0); ++i)
+                route[i] = i;
+            int index = 0;
+            List<int> indexes = new List<int>();
+            indexes.Add(0);
+           // double mindistance = double.MaxValue;
+            for (int i = 0; i < indexes.Count; ++i) 
+            {
+                double mindistance = double.MaxValue;
+                index = -1;
+                for(int j = 0; j < route.Length; ++j)
+                {
+                    if (j != i)
+                    {
+                        double distance = ComputeDistance(citiesPositions[indexes.ElementAt(i)], citiesPositions[j]);
+                        if (distance < mindistance && !indexes.Contains(j))
+                        {
+                            mindistance = distance;
+                            index = j;
+                        }
+                    }
+           
+                }
+                if (index == -1)
+                    break;
+            indexes.Add(index);
+        }
+            for(int i = 0; i < indexes.Count; ++i)
+                route[i] = indexes.ElementAt(i);
+
+            int dimension = cities.GetLength(0) % k == 0 ? cities.GetLength(0) / k : cities.GetLength(0) / k + 1;
+            int[,] result = new int[dimension, k+2];
+            for (int i = 0; i < dimension; ++i)
+            {
+                result[i, 0] = 0;
+                result[i, k + 1] = 0;
+                for(int j = 1; j < k+1 && j + i*k < indexes.Count; ++j)
+                    result[i, j] = indexes.ElementAt(j + i*k);
+            }
+
+                return result;
+        }
+
+       private static int[,] OperatorInter(int[,] X)
         {  
              int dimension = X.GetLength(0);
              int length = X.GetLength(1);
@@ -122,7 +173,7 @@ namespace SRPP
                      }
                  }
             return X;
-        }*/
+        }
 
         private static int[,] Operator(int[,] X)
         {
@@ -143,7 +194,7 @@ namespace SRPP
             return temp;
         }
 
-       /* private static int[,] OperatorIntra(int[,] X)
+        private static int[,] OperatorIntra(int[,] X)
         {
             int dimension = X.GetLength(0);
             int length = X.GetLength(1);
@@ -166,7 +217,8 @@ namespace SRPP
 
                 return X;
         }
-        */
+        
+
         public static double Fittness(int[,] X)
         {
             double distance = 0;
