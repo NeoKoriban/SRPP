@@ -39,7 +39,7 @@ namespace SRPP
             X = LocalSearch(X);
             Xbest = X;
 
-            int maxIteration = 1000, L = 10;
+            int maxIteration = 100, L = 200;
 
             for (int iteration = 0; iteration < maxIteration; ++iteration)
             {
@@ -72,15 +72,17 @@ namespace SRPP
 
                 if (length < 4)
                     return X;
-            if(generator.Next() %2 == 0)
+           /* if(generator.Next() %2 == 0)
                 X = OperatorInter(X);
             else
-                X = OperatorIntra(X);
+                X = OperatorIntra(X);*/
+               // X = OperatorIntra(X);
+                return Operator(X);
 
-            return X;
+         //   return X;
         }
 
-        private static int[,] OperatorInter(int[,] X)
+      /*  private static int[,] OperatorInter(int[,] X)
         {  
              int dimension = X.GetLength(0);
              int length = X.GetLength(1);
@@ -92,7 +94,7 @@ namespace SRPP
 
              int first = generator.Next(length - 2) + 1;
              int last = first + 1;
-             while (generator.NextDouble() > 0.2 && last < length - 2)
+            while (generator.NextDouble() > 0.2 && last < length - 2)
                  last += 1;
 
 
@@ -120,16 +122,35 @@ namespace SRPP
                      }
                  }
             return X;
+        }*/
+
+        private static int[,] Operator(int[,] X)
+        {
+            int[,] temp = new int[X.GetLength(0), X.GetLength(1)];
+            for (int i = 0; i < X.GetLength(0); ++i)
+                for (int j = 0; j < X.GetLength(1); ++j)
+                    temp[i, j] = X[i, j];
+            int first_route = generator.Next(X.GetLength(0)-1);
+            int second_route = generator.Next(X.GetLength(0) - 1);
+
+            int first_element = generator.Next(X.GetLength(1) - 2) + 1;
+            int second_element = generator.Next(X.GetLength(1) - 2) + 1;
+
+            int tmp = temp[first_route, first_element];
+            temp[first_route, first_element] = temp[second_route, second_element];
+            temp[second_route, second_element] = tmp;
+
+            return temp;
         }
 
-        private static int[,] OperatorIntra(int[,] X)
+       /* private static int[,] OperatorIntra(int[,] X)
         {
             int dimension = X.GetLength(0);
             int length = X.GetLength(1);
 
             int first = generator.Next(dimension-1);
             int last = first + 1;
-            while (generator.NextDouble() > 0.2 && last < dimension - 1)
+           while (generator.NextDouble() > 0.2 && last < dimension - 1)
                 last += 1;
 
             for (int i = first; i < last; ++i)
@@ -145,7 +166,7 @@ namespace SRPP
 
                 return X;
         }
-
+        */
         public static double Fittness(int[,] X)
         {
             double distance = 0;

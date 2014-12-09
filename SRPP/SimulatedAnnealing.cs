@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace SRPP
 {
@@ -17,6 +18,7 @@ namespace SRPP
             numberOfCities = numberOfCity;
             var result = SimulatedAnnealingProvider.GenerateSolution(k, citiesList, userTemperature);
             double distance = SimulatedAnnealingProvider.Fittness(result);
+            MessageBox.Show(distance.ToString());
         }
 
         private int[] citiesTrack(int city, int index, int [] trackList)
