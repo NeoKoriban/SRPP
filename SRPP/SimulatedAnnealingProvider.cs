@@ -38,9 +38,10 @@ namespace SRPP
             int[,] X = start, Xbest;
             //X = LocalSearch(X);
             X = PreInit(k);
+            double resultfirst = Fittness(X);
             Xbest = X;
 
-            int maxIteration = 1000, L = 200;
+            int maxIteration = 100, L = 200;
 
             for (int iteration = 0; iteration < maxIteration; ++iteration)
             {
@@ -64,7 +65,7 @@ namespace SRPP
                 }
                 t = alpha * t;
             }
-         
+            double resultsecond = Fittness(Xbest);
             return Xbest;
         }
         private static int[,] LocalSearch(int[,] X)
